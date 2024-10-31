@@ -1,0 +1,46 @@
+#
+# Copyright (c) Huawei Technologies Co., Ltd. 2020-2024. All rights reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+PREFIX yang: <http://www.typefox.io/yang/Yang#>
+PREFIX yang-sn: <http://www.typefox.io/yang/Yang#SchemaNode/>
+PREFIX yang-stmt: <http://www.typefox.io/yang/Yang#Statement/>
+PREFIX yang-type: <http://www.typefox.io/yang/Yang#Type/>
+PREFIX yang-tr: <http://www.typefox.io/yang/Yang#TypeReference/>
+PREFIX yang2: <http://huawei.com/kg/def/yang/>
+
+CONSTRUCT {
+  ?target_stmt_iri yang2:hasType ?leaf_type .
+  ?target_stmt_iri yang2:hasDerivedType ?leaf_derived_type .
+}
+FROM <http://www.typefox.io/yang/common>
+FROM <http://huawei.com/kg/def/common/yang>
+WHERE {
+  OPTIONAL {
+    ?stmt_iri yang-stmt:substatements ?t_iri .
+    ?t_iri a yang:Type .
+    ?t_iri yang-type:typeRef ?tr_iri .
+    ?tr_iri a yang:TypeReference .
+    ?tr_iri yang-tr:builtin ?leaf_type .
+  }
+  OPTIONAL {
+    ?stmt_iri yang-stmt:substatements ?t_iri .
+    ?t_iri a yang:Type .
+    ?t_iri yang-type:typeRef ?tr_iri .
+    ?tr_iri a yang:TypeReference .
+    ?tr_iri yang-tr:type ?type_def .
+    ?type_def a yang:Typedef .
+    ?type_def yang-sn:name ?leaf_derived_type .
+  }
+}

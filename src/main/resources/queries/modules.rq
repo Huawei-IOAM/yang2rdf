@@ -1,0 +1,60 @@
+#
+# Copyright (c) Huawei Technologies Co., Ltd. 2020-2024. All rights reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX yang: <http://www.typefox.io/yang/Yang#>
+PREFIX yang-am: <http://www.typefox.io/yang/Yang#AbstractModule/>
+PREFIX yang-desc: <http://www.typefox.io/yang/Yang#Description/>
+PREFIX yang-ns: <http://www.typefox.io/yang/Yang#Namespace/>
+PREFIX yang-prefix: <http://www.typefox.io/yang/Yang#Prefix/>
+PREFIX yang-rev: <http://www.typefox.io/yang/Yang#Revision/>
+PREFIX yang-sn: <http://www.typefox.io/yang/Yang#SchemaNode/>
+PREFIX yang-stmt: <http://www.typefox.io/yang/Yang#Statement/>
+PREFIX yang2: <http://huawei.com/kg/def/yang/>
+
+CONSTRUCT {
+  ?target_stmt_iri a ?target_stmt_type_iri .
+  ?target_stmt_iri rdfs:label ?stmt_name .
+  ?target_stmt_iri dc:description ?description .
+  ?target_stmt_iri yang2:hasNamespace ?namespace .
+  ?target_stmt_iri yang2:hasPrefix ?prefix .
+  ?target_stmt_iri yang2:hasRevision ?revision .
+  ?target_stmt_iri yang2:hasSource ?stmt_iri .
+}
+WHERE {
+  BIND(yang:Module AS ?stmt_type_iri)
+  ?stmt_iri a ?stmt_type_iri .
+  ?stmt_iri yang-am:name ?stmt_name .
+  OPTIONAL {
+    ?stmt_iri yang-stmt:substatements ?description_iri .
+    ?description_iri yang-desc:description ?description .
+  }
+  OPTIONAL {
+    ?stmt_iri yang-stmt:substatements ?namespace_iri .
+    ?namespace_iri yang-ns:uri ?namespace .
+  }
+  OPTIONAL {
+    ?stmt_iri yang-stmt:substatements ?prefix_iri .
+    ?prefix_iri yang-prefix:prefix ?prefix .
+  }
+  OPTIONAL {
+    ?stmt_iri yang-stmt:substatements ?revision_iri .
+    ?revision_iri yang-rev:revision ?revision .
+  }
+  BIND(STRAFTER(STR(?stmt_type_iri), "#") AS ?stmt_type)
+  BIND(IRI(CONCAT("http://huawei.com/kg/def/yang/", ?stmt_type)) AS ?target_stmt_type_iri)
+  BIND(IRI(CONCAT("http://huawei.com/kg/def/common/", ?stmt_type, "/", ?stmt_name)) AS ?target_stmt_iri)
+}

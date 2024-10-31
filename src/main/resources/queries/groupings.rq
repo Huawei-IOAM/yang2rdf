@@ -1,0 +1,47 @@
+#
+# Copyright (c) Huawei Technologies Co., Ltd. 2020-2024. All rights reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX yang: <http://www.typefox.io/yang/Yang#>
+PREFIX yang-desc: <http://www.typefox.io/yang/Yang#Description/>
+PREFIX yang-gr: <http://www.typefox.io/yang/Yang#GroupingRef/>
+PREFIX yang-sn: <http://www.typefox.io/yang/Yang#SchemaNode/>
+PREFIX yang-stmt: <http://www.typefox.io/yang/Yang#Statement/>
+PREFIX yang-u: <http://www.typefox.io/yang/Yang#Uses/>
+PREFIX yang2: <http://huawei.com/kg/def/yang/>
+
+CONSTRUCT {
+  ?target_stmt_iri a ?target_stmt_type_iri .
+  ?target_stmt_iri rdfs:label ?stmt_name .
+  ?target_stmt_iri dc:description ?description .
+  ?target_stmt_iri yang2:hasSource ?stmt_iri .
+  ?parent_target_stmt_iri yang2:contains ?target_stmt_iri
+}
+WHERE {
+  ?_parent_stmt_iri yang-stmt:substatements ?grouping_iri .
+  ?grouping_iri a yang:Grouping .
+  ?grouping_iri yang-stmt:substatements ?stmt_iri .
+  ?stmt_iri a ?stmt_type_iri .
+  ?stmt_type_iri rdfs:subClassOf yang:DataSchemaNode .
+  ?stmt_iri yang-sn:name ?stmt_name .
+  OPTIONAL {
+    ?stmt_iri yang-stmt:substatements ?description_iri .
+    ?description_iri yang-desc:description ?description .
+  }
+  BIND(STRAFTER(STR(?stmt_type_iri), "#") AS ?stmt_type)
+  BIND(IRI(CONCAT("http://huawei.com/kg/def/yang/", ?stmt_type)) AS ?target_stmt_type_iri)
+  BIND(IRI(CONCAT(STR(?_parent_target_stmt_iri), "/", ?_module_name, ':', ?stmt_name)) AS ?target_stmt_iri)
+}

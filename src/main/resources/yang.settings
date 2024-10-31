@@ -1,0 +1,9 @@
+{
+  "diagnostic" : {
+    "incorrect-version": "warning",
+    "bad-type-name": "warning",
+    "type-error": "warning",
+    "bad-include-yang-version": "warning",
+    "bad-import-yang-version": "warning"
+  }
+}

@@ -1,0 +1,287 @@
+#
+# Copyright (c) Huawei Technologies Co., Ltd. 2020-2024. All rights reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+@prefix : <http://www.typefox.io/yang/Yang#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix stmt: <http://www.typefox.io/yang/Yang#Statement/> .
+
+# Classes
+
+:Statement a rdfs:Class ;
+    rdfs:label "Statement" ;
+    rdfs:comment "A statement" .
+
+:SchemaNode a rdfs:Class ;
+    rdfs:label "SchemaNode" ;
+    rdfs:comment "A schema node" ;
+    rdfs:subClassOf :Statement .
+
+:OtherStatement a rdfs:Class ;
+    rdfs:label "OtherStatement" ;
+    rdfs:comment "An other statement" ;
+    rdfs:subClassOf :Statement .
+
+:DataSchemaNode a rdfs:Class ;
+    rdfs:label "DataSchemaNode" ;
+    rdfs:comment "A data schema node" ;
+    rdfs:subClassOf :SchemaNode .
+
+:AbstractModule a rdfs:Class ;
+    rdfs:label "AbstractModule" ;
+    rdfs:comment "An abstract module node" ;
+    rdfs:subClassOf :OtherStatement .
+
+:AbstractImport a rdfs:Class ;
+    rdfs:label "AbstractImport" ;
+    rdfs:comment "An abstract import node" ;
+    rdfs:subClassOf :OtherStatement .
+
+# 7.1
+:Module a rdfs:Class ;
+    rdfs:label "Module" ;
+    rdfs:comment "The module statement" ;
+    rdfs:subClassOf :AbstractModule .
+
+# 7.1.2
+:YangVersion a rdfs:Class ;
+    rdfs:label "YangVersion" ;
+    rdfs:comment "The yang-version statement" ;
+    rdfs:subClassOf :OtherStatement .
+
+# 7.1.3
+:Namespace a rdfs:Class ;
+    rdfs:label "Namespace" ;
+    rdfs:comment "The namespace statement" ;
+    rdfs:subClassOf :OtherStatement .
+
+# 7.1.4
+:Prefix a rdfs:Class ;
+    rdfs:label "Prefix" ;
+    rdfs:comment "The prefix statement" ;
+    rdfs:subClassOf :OtherStatement .
+
+# 7.1.5
+:Import a rdfs:Class ;
+    rdfs:label "Import" ;
+    rdfs:comment "The import statement" ;
+    rdfs:subClassOf :AbstractImport .
+
+# 7.1.6
+:Include a rdfs:Class ;
+    rdfs:label "Include" ;
+    rdfs:comment "The include statement" ;
+    rdfs:subClassOf :AbstractImport .
+
+# 7.1.7
+:Organization a rdfs:Class ;
+    rdfs:label "Organization" ;
+    rdfs:comment "The organization statement" ;
+    rdfs:subClassOf :OtherStatement .
+
+# 7.1.8
+:Contact a rdfs:Class ;
+    rdfs:label "Contact" ;
+    rdfs:comment "The contact statement" ;
+    rdfs:subClassOf :OtherStatement .
+
+# 7.1.9
+:Revision a rdfs:Class ;
+    rdfs:label "Revision" ;
+    rdfs:comment "The revision statement" ;
+    rdfs:subClassOf :OtherStatement .
+
+# 7.2
+:Submodule a rdfs:Class ;
+    rdfs:label "Submodule" ;
+    rdfs:comment "The submodule statement" ;
+    rdfs:subClassOf :AbstractModule .
+
+# 7.3
+:Typedef a rdfs:Class ;
+    rdfs:label "Typedef" ;
+    rdfs:comment "The typedef statement" ;
+    rdfs:subClassOf :SchemaNode .
+
+# 7.4
+:Type a rdfs:Class ;
+    rdfs:label "Type" ;
+    rdfs:comment "The type statement" ;
+    rdfs:subClassOf :OtherStatement .
+
+# 7.5
+:Container a rdfs:Class ;
+    rdfs:label "Container" ;
+    rdfs:comment "The container statement" ;
+    rdfs:subClassOf :DataSchemaNode .
+
+# 7.6
+:Leaf a rdfs:Class ;
+    rdfs:label "Leaf" ;
+    rdfs:comment "The leaf statement" ;
+    rdfs:subClassOf :DataSchemaNode .
+
+# 7.7
+:LeafList a rdfs:Class ;
+    rdfs:label "LeafList" ;
+    rdfs:comment "The leaf-list statement" ;
+    rdfs:subClassOf :DataSchemaNode .
+
+# 7.8
+:List a rdfs:Class ;
+    rdfs:label "List" ;
+    rdfs:comment "The list statement" ;
+    rdfs:subClassOf :DataSchemaNode .
+
+# 7.9
+:Choice a rdfs:Class ;
+    rdfs:label "Choice" ;
+    rdfs:comment "The choice statement" ;
+    rdfs:subClassOf :DataSchemaNode .
+
+# 7.10
+:Anydata a rdfs:Class ;
+    rdfs:label "Anydata" ;
+    rdfs:comment "The anydata statement" ;
+    rdfs:subClassOf :DataSchemaNode .
+
+# 7.11
+:Anyxml a rdfs:Class ;
+    rdfs:label "Anyxml" ;
+    rdfs:comment "The anyxml statement" ;
+    rdfs:subClassOf :DataSchemaNode .
+
+# 7.12
+:Grouping a rdfs:Class ;
+    rdfs:label "Grouping" ;
+    rdfs:comment "The grouping statement" ;
+    rdfs:subClassOf :SchemaNode .
+
+# 7.13
+:Uses a rdfs:Class ;
+    rdfs:label "Uses" ;
+    rdfs:comment "The uses statement" ;
+    rdfs:subClassOf :OtherStatement .
+
+# 7.14
+:Rpc a rdfs:Class ;
+    rdfs:label "Rpc" ;
+    rdfs:comment "The rpc statement" ;
+    rdfs:subClassOf :SchemaNode .
+
+# 7.14.2
+:Input a rdfs:Class ;
+    rdfs:label "Input" ;
+    rdfs:comment "The input statement" ;
+    rdfs:subClassOf :SchemaNode .
+
+# 7.14.3
+:Output a rdfs:Class ;
+    rdfs:label "Output" ;
+    rdfs:comment "The output statement" ;
+    rdfs:subClassOf :SchemaNode .
+
+# 7.15
+:Action a rdfs:Class ;
+    rdfs:label "Action" ;
+    rdfs:comment "The action statement" ;
+    rdfs:subClassOf :SchemaNode .
+
+# 7.16
+:Notification a rdfs:Class ;
+    rdfs:label "Notification" ;
+    rdfs:comment "The notification statement" ;
+    rdfs:subClassOf :SchemaNode .
+
+# 7.17
+:Augment a rdfs:Class ;
+    rdfs:label "Augment" ;
+    rdfs:comment "The augment statement" ;
+    rdfs:subClassOf :OtherStatement .
+
+# 7.18
+:Identity a rdfs:Class ;
+    rdfs:label "Identity" ;
+    rdfs:comment "The identity statement" ;
+    rdfs:subClassOf :SchemaNode .
+
+# 7.19
+:Extension a rdfs:Class ;
+    rdfs:label "Extension" ;
+    rdfs:comment "The extension statement" ;
+    rdfs:subClassOf :SchemaNode .
+
+# 7.20.1
+:Feature a rdfs:Class ;
+    rdfs:label "Feature" ;
+    rdfs:comment "The feature statement" ;
+    rdfs:subClassOf :SchemaNode .
+
+### Properties
+
+stmt:substatements a rdf:Property ;
+    rdfs:label "substatements" ;
+    rdfs:comment "The substatements" ;
+    rdfs:domain :Statement ;
+    rdfs:range :Statement .
+
+:yangVersion a rdf:Property ;
+    rdfs:label "yangVersion" ;
+    rdfs:comment "The yang-version substatement" ;
+    rdfs:domain :AbstractModule ;
+    rdfs:range :YangVersion .
+
+:namespace a rdf:Property ;
+    rdfs:label "namespace" ;
+    rdfs:comment "The namespace substatement" ;
+    rdfs:domain :AbstractModule ;
+    rdfs:range :Namespace .
+
+:prefix a rdf:Property ;
+    rdfs:label "prefix" ;
+    rdfs:comment "The prefix substatement" ;
+    rdfs:domain :AbstractModule ;
+    rdfs:range :Prefix .
+
+:import a rdf:Property ;
+    rdfs:label "import" ;
+    rdfs:comment "The import substatement" ;
+    rdfs:domain :AbstractModule ;
+    rdfs:range :Import .
+
+:include a rdf:Property ;
+    rdfs:label "include" ;
+    rdfs:comment "The include substatement" ;
+    rdfs:domain :AbstractModule ;
+    rdfs:range :Include .
+
+:organization a rdf:Property ;
+    rdfs:label "organization" ;
+    rdfs:comment "The organization substatement" ;
+    rdfs:domain :AbstractModule ;
+    rdfs:range :Organization .
+
+:contact a rdf:Property ;
+    rdfs:label "contact" ;
+    rdfs:comment "The contact substatement" ;
+    rdfs:domain :AbstractModule ;
+    rdfs:range :Contact .
+
+:revision a rdf:Property ;
+    rdfs:label "revision" ;
+    rdfs:comment "The revision substatement" ;
+    rdfs:domain :AbstractModule ;
+    rdfs:range :Revision .
