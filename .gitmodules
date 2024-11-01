@@ -1,0 +1,3 @@
+[submodule "yang"]
+	path = yang
+	url = git@github.com:Huawei/yang
