@@ -12,13 +12,13 @@ Convert YANG models to RDF.
 Clone the repository with submodules recursively
 
 ```bash
-git clone ssh://git@rnd-gitlab-eu.huawei.com:2222/irc-sdn/yang2rdf.git -b develop --recursive
+git clone https://github.com/Huawei-IOAM/yang2rdf.git --recursive
 ```
 
 Or, clone the repository and update the submodules
 
 ```bash
-git clone ssh://git@rnd-gitlab-eu.huawei.com:2222/irc-sdn/yang2rdf.git -b develop
+git clone https://github.com/Huawei-IOAM/yang2rdf.git
 git submodule update --init --recursive
 ```
 
