@@ -1,0 +1,73 @@
+
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rml: <http://semweb.mmlab.be/ns/rml#>.
+@prefix ql: <http://semweb.mmlab.be/ns/ql#>.
+@prefix huawei-yang: <http://huawei-yang.com/> .
+@base <http://example.com/ns#>.
+@prefix : <http://example.org/rules/> .
+@prefix yang: <http://www.typefox.io/yang/Yang#//> .
+
+
+:Triplesmap a rr:TriplesMap;
+
+	rml:logicalSource [
+		a rml:LogicalSource;
+		rml:source "P1_config.xml";
+		rml:referenceFormulation ql:XPath;
+		rml:iterator "/*[local-name()='rpc-reply']/*[local-name()='data']/*[local-name()='ifm']/*[local-name()='interfaces']/*[local-name()='interface']"
+	];
+
+	rr:subjectMap [
+		rr:template "http://huawei.com/1.1.1.1/{string-join(ancestor-or-self::*[local-name()!='rpc-reply']/name(), '/')}/{*[local-name()='name']/text()}" ;
+		#rr:class yang:Node ;
+	] ;
+
+    rr:predicateObjectMap [
+        rr:predicate huawei-yang:interfaceName;
+        rr:objectMap [ rml:reference "*[local-name()='name']/text()" ];
+    rr:graphMap [ rml:reference "string-join(ancestor-or-self::*/name(), '/') || '/name'" ] ;    
+    ] ;
+
+	
+    rr:predicateObjectMap [
+        rr:predicate huawei-yang:interfaceClass;
+        rr:objectMap [ rml:reference "*[local-name()='class']" ];
+    rr:graphMap [ rml:reference "string-join(ancestor-or-self::*/name(), '/') || '/class'" ] ; 
+    ] ;	
+
+    rr:predicateObjectMap [
+        rr:predicate huawei-yang:interfaceType;
+        rr:objectMap [ rml:reference "*[local-name()='type']" ];
+    rr:graphMap [ rml:reference "string-join(ancestor-or-self::*/name(), '/') || '/type'" ] ; 
+    ] ;	
+
+    rr:predicateObjectMap [
+        rr:predicate huawei-yang:interfaceLinkProtocol;
+        rr:objectMap [ rml:reference "*[local-name()='link-protocol']" ];
+    rr:graphMap [ rml:reference "string-join(ancestor-or-self::*/name(), '/') || '/link-protocol'" ] ; 
+    ] ;	
+
+
+    rr:predicateObjectMap [
+        rr:predicate huawei-yang:interfaceRouterType;
+        rr:objectMap [ rml:reference "*[local-name()='router-type']" ];
+    rr:graphMap [ rml:reference "string-join(ancestor-or-self::*/name(), '/') || '/router-type'" ] ; 
+    ] ;	
+
+    rr:predicateObjectMap [
+        rr:predicate huawei-yang:interfaceMtu;
+        rr:objectMap [ rml:reference "*[local-name()='mtu']/text()" ];
+    rr:graphMap [ rml:reference "string-join(ancestor-or-self::*/name(), '/') || '/mtu'" ] ; 
+    ] ;	
+
+	rr:predicateObjectMap [
+        rr:predicate huawei-yang:interfaceVsName ;
+        rr:objectMap [ rml:reference "*[local-name()='vs-name']" ];
+    rr:graphMap [ rml:reference "string-join(ancestor-or-self::*/name(), '/') || '/vs-name'" ] ; 
+    ] ;
+
+	
+	.

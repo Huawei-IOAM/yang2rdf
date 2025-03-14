@@ -1,0 +1,37 @@
+@prefix ns0: <http://www.typefox.io/yang/Yang#SchemaNode/> .
+@prefix ns1: <http://www.typefox.io/yang/Yang#Statement/> .
+
+<http://www.typefox.io/yang/Leaf/huawei-ifm/ifm/interfaces/interface/vs-name>
+  a <http://www.typefox.io/yang/Yang#Leaf> ;
+  ns0:name "vs-name" ;
+  ns1:substatements <http://www.typefox.io/yang/Type/237/@substatements.32/@substatements.4/@substatements.1/@substatements.27/@substatements.0>, <http://www.typefox.io/yang/Config/237/@substatements.32/@substatements.4/@substatements.1/@substatements.27/@substatements.1>, <http://www.typefox.io/yang/Description/237/@substatements.32/@substatements.4/@substatements.1/@substatements.27/@substatements.2> .
+
+<http://www.typefox.io/yang/Leaf/huawei-ifm/ifm/interfaces/interface/mtu>
+  a <http://www.typefox.io/yang/Yang#Leaf> ;
+  ns0:name "mtu" ;
+  ns1:substatements <http://www.typefox.io/yang/Type/237/@substatements.32/@substatements.4/@substatements.1/@substatements.16/@substatements.0>, <http://www.typefox.io/yang/Units/237/@substatements.32/@substatements.4/@substatements.1/@substatements.16/@substatements.1>, <http://www.typefox.io/yang/Unknown/237/@substatements.32/@substatements.4/@substatements.1/@substatements.16/@substatements.2>, <http://www.typefox.io/yang/Description/237/@substatements.32/@substatements.4/@substatements.1/@substatements.16/@substatements.3> .
+
+<http://www.typefox.io/yang/Leaf/huawei-ifm/ifm/interfaces/interface/link-protocol>
+  a <http://www.typefox.io/yang/Yang#Leaf> ;
+  ns0:name "link-protocol" ;
+  ns1:substatements <http://www.typefox.io/yang/Type/237/@substatements.32/@substatements.4/@substatements.1/@substatements.9/@substatements.0>, <http://www.typefox.io/yang/Unknown/237/@substatements.32/@substatements.4/@substatements.1/@substatements.9/@substatements.1>, <http://www.typefox.io/yang/Description/237/@substatements.32/@substatements.4/@substatements.1/@substatements.9/@substatements.2> .
+
+<http://www.typefox.io/yang/Leaf/huawei-ifm/ifm/interfaces/interface/class>
+  a <http://www.typefox.io/yang/Yang#Leaf> ;
+  ns0:name "class" ;
+  ns1:substatements <http://www.typefox.io/yang/Unknown/huawei-ifm/ifm/interfaces/interface/class/update%7Cdelete>, <http://www.typefox.io/yang/Type/237/@substatements.32/@substatements.4/@substatements.1/@substatements.3/@substatements.1>, <http://www.typefox.io/yang/Unknown/237/@substatements.32/@substatements.4/@substatements.1/@substatements.3/@substatements.2>, <http://www.typefox.io/yang/Description/237/@substatements.32/@substatements.4/@substatements.1/@substatements.3/@substatements.3>, <http://www.typefox.io/yang/Unknown/huawei-ifm/ifm/interfaces/interface/class/true> .
+
+<http://www.typefox.io/yang/Leaf/huawei-ifm/ifm/interfaces/interface/name>
+  a <http://www.typefox.io/yang/Yang#Leaf> ;
+  ns0:name "name" ;
+  ns1:substatements <http://www.typefox.io/yang/Type/237/@substatements.32/@substatements.4/@substatements.1/@substatements.2/@substatements.0>, <http://www.typefox.io/yang/Description/237/@substatements.32/@substatements.4/@substatements.1/@substatements.2/@substatements.1> .
+
+<http://www.typefox.io/yang/Leaf/huawei-ifm/ifm/interfaces/interface/router-type>
+  a <http://www.typefox.io/yang/Yang#Leaf> ;
+  ns0:name "router-type" ;
+  ns1:substatements <http://www.typefox.io/yang/Unknown/huawei-ifm/ifm/interfaces/interface/router-type/update%7Cdelete>, <http://www.typefox.io/yang/Type/237/@substatements.32/@substatements.4/@substatements.1/@substatements.10/@substatements.1>, <http://www.typefox.io/yang/Unknown/237/@substatements.32/@substatements.4/@substatements.1/@substatements.10/@substatements.2>, <http://www.typefox.io/yang/Description/237/@substatements.32/@substatements.4/@substatements.1/@substatements.10/@substatements.3> .
+
+<http://www.typefox.io/yang/Leaf/huawei-ifm/ifm/interfaces/interface/type>
+  a <http://www.typefox.io/yang/Yang#Leaf> ;
+  ns0:name "type" ;
+  ns1:substatements <http://www.typefox.io/yang/Unknown/huawei-ifm/ifm/interfaces/interface/type/update%7Cdelete>, <http://www.typefox.io/yang/Type/237/@substatements.32/@substatements.4/@substatements.1/@substatements.4/@substatements.1>, <http://www.typefox.io/yang/Unknown/237/@substatements.32/@substatements.4/@substatements.1/@substatements.4/@substatements.2>, <http://www.typefox.io/yang/Description/237/@substatements.32/@substatements.4/@substatements.1/@substatements.4/@substatements.3>, <http://www.typefox.io/yang/Unknown/huawei-ifm/ifm/interfaces/interface/type/true> .
